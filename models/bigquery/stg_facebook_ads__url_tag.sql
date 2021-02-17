@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(enabled=target.type=='bigquery') }}
 
 with base as (
 

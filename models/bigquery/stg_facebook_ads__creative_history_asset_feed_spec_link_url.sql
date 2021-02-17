@@ -1,3 +1,5 @@
+{{ config(enabled=target.type=='bigquery') }}
+
 with base as (
 
     select *

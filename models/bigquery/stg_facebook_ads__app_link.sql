@@ -1,3 +1,5 @@
+{{ config(enabled=target.type=='bigquery') }}
+
 with base as (
 
   select *
@@ -28,7 +30,7 @@ with base as (
     json_extract_scalar(element, '$.class') as class_name,
     json_extract_scalar(element, '$.package') as package_name,
     json_extract_scalar(element, '$.template_page') as template_page
-  from base
+  from required_fields
   left join unnest(json_extract_array(template_app_link_spec_{{ app }})) as element
 
 {% endfor %}
