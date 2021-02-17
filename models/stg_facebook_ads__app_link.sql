@@ -8,10 +8,10 @@ with base as (
   select 
     _fivetran_id, 
     creative_id, 
-    template_app_link_spec_ios_dummy,
-    template_app_link_spec_ipad_dummy,
-    template_app_link_spec_android_dummy,
-    template_app_link_spec_iphone_dummy
+    template_app_link_spec_ios,
+    template_app_link_spec_ipad,
+    template_app_link_spec_android,
+    template_app_link_spec_iphone
   from base
 
 {% for app in ['ios','ipad','android','iphone'] %}
@@ -29,7 +29,7 @@ with base as (
     json_extract_scalar(element, '$.package') as package_name,
     json_extract_scalar(element, '$.template_page') as template_page
   from base
-  left join unnest(json_extract_array(template_app_link_spec_{{ app }}_dummy)) as element
+  left join unnest(json_extract_array(template_app_link_spec_{{ app }})) as element
 
 {% endfor %}
 
