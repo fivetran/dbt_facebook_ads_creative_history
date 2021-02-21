@@ -23,7 +23,7 @@ with base as (
         url_tags.value:key::string as key,
         url_tags.value:value::string as value,
         url_tags.value:type::string as type
-    from base,
+    from required_fields,
     lateral flatten( input => url_tags ) as url_tags
 
   
