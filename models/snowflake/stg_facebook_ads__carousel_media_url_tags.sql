@@ -9,13 +9,15 @@ with base as (
 
     select 
     
-        _fivetran_id,
-        creative_id,
-        index,
+        base._fivetran_id,
+        base.creative_id,
+        base.index,
         url_tags:key::string as key,
         url_tags:value::string as value
-    
-    from base
+
+    from base, 
+    lateral flatten( input => url_tags ) as url_tags
+
 )
 
 select *

@@ -34,22 +34,7 @@ with base as (
     from required_fields, 
     lateral flatten( input => child_attachments ) as attachments
 
-), flattened_url_tags as (
-    
-    select 
-        _fivetran_id,
-        creative_id,
-        caption, 
-        description, 
-        message,
-        element,
-        flattened_child_attachments.index,
-        link,
-        url_tags.value as url_tags
-
-    from flattened_child_attachments, 
-    lateral flatten( input => url_tags ) as url_tags
 )
 
 select *
-from flattened_url_tags
+from flattened_child_attachments
