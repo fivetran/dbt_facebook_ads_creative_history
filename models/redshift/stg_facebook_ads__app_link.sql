@@ -28,7 +28,7 @@ with base as (
   select 
     _fivetran_id,
     creative_id,
-    '{{ app }}' as app_type,
+    '{{ app }}'::varchar as app_type,
     json_extract_array_element_text(required_fields.template_app_link_spec_{{ app }}, numbers.generated_number::int - 1, true) as element
   from required_fields
   inner join numbers
