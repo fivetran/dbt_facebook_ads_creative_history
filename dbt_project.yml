@@ -1,10 +1,10 @@
 
-name: 'facebook_ads_backwards_compatibility'
+name: 'facebook_ads_creative_history'
 version: '1.0.0'
 config-version: 2
 
 require-dbt-version: [">=0.18.0", "<0.20.0"]
 
 models:
-  facebook_ads_backwards_compatibility:
+  facebook_ads_creative_history:
     materialized: table
