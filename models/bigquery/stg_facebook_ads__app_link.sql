@@ -1,5 +1,3 @@
-{{ config(enabled=target.type=='bigquery') }}
-
 with base as (
 
   select *
@@ -7,9 +5,9 @@ with base as (
 
 ), required_fields as (
 
-  select 
-    _fivetran_id, 
-    creative_id, 
+  select
+    _fivetran_id,
+    creative_id,
     template_app_link_spec_ios,
     template_app_link_spec_ipad,
     template_app_link_spec_android,
@@ -17,10 +15,10 @@ with base as (
   from base
 
 {% for app in ['ios','ipad','android','iphone'] %}
-  
+
 ), unnested_{{ app }} as (
 
-  select 
+  select
     _fivetran_id,
     creative_id,
     '{{ app }}' as app_type,

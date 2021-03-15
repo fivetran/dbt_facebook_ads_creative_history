@@ -1,5 +1,3 @@
-{{ config(enabled=target.type=='redshift') }}
-
 with base as (
 
     select *
@@ -12,7 +10,7 @@ with base as (
 
 ), required_fields as (
 
-    select 
+    select
         _fivetran_id,
         creative_id,
         url_tags
@@ -21,7 +19,7 @@ with base as (
 
 
 ), flattened_url_tags as (
-    
+
     select
         _fivetran_id,
         creative_id,
@@ -30,9 +28,9 @@ with base as (
     inner join numbers
         on json_array_length(required_fields.url_tags) >= numbers.generated_number
 
-  
+
 ), extracted_fields as (
-    
+
     select
         _fivetran_id,
         creative_id,

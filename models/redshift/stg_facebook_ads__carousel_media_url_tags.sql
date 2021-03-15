@@ -1,5 +1,3 @@
-{{ config(enabled=target.type=='redshift') }}
-
 with base as (
 
     select *
@@ -9,11 +7,11 @@ with base as (
 
     select *
     from {{ ref('utils__facebook_ads__numbers') }}
-  
+
 ), unnested as (
 
-    select 
-    
+    select
+
         base._fivetran_id,
         base.creative_id,
         base.index,
@@ -24,7 +22,7 @@ with base as (
 
 ), extracted_fields as (
 
-    select 
+    select
         _fivetran_id,
         creative_id,
         index,

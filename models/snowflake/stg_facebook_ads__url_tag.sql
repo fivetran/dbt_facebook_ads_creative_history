@@ -1,5 +1,3 @@
-{{ config(enabled=target.type=='snowflake') }}
-
 with base as (
 
     select *
@@ -7,7 +5,7 @@ with base as (
 
 ), required_fields as (
 
-    select 
+    select
         _fivetran_id,
         creative_id,
         parse_json(url_tags) as url_tags
@@ -16,7 +14,7 @@ with base as (
 
 
 ), flattened_url_tags as (
-    
+
     select
         _fivetran_id,
         creative_id,
@@ -26,7 +24,7 @@ with base as (
     from required_fields,
     lateral flatten( input => url_tags ) as url_tags
 
-  
+
 )
 
 select *

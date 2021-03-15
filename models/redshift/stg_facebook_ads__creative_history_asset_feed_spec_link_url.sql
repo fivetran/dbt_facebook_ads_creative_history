@@ -1,5 +1,3 @@
-{{ config(enabled=target.type=='redshift') }}
-
 with base as (
 
     select *
@@ -10,17 +8,17 @@ with base as (
     select *
     from {{ ref('utils__facebook_ads__numbers') }}
 
-), required_fields as (  
-  
-    select 
-        _fivetran_id, 
+), required_fields as (
+
+    select
+        _fivetran_id,
         asset_feed_spec_link_urls
     from base
     where asset_feed_spec_link_urls is not null
-  
+
 ), flattened as (
 
-    select 
+    select
         _fivetran_id,
         json_extract_array_element_text(required_fields.asset_feed_spec_link_urls, numbers.generated_number::int - 1, true) as element,
         numbers.generated_number - 1 as index
