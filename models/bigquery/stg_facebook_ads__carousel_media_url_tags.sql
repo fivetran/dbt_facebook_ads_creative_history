@@ -1,13 +1,11 @@
-{{ config(enabled=target.type=='bigquery') }}
-
 with base as (
 
     select *
     from {{ ref('int__facebook_ads__carousel_media_prep') }}
-  
+
 ), unnested as (
 
-    select 
+    select
         _fivetran_id,
         creative_id,
         index,

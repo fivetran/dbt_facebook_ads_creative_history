@@ -1,4 +1,3 @@
-{{ config(enabled=target.type=='snowflake') }}
 
 with base as (
 
@@ -7,9 +6,9 @@ with base as (
 
 ), required_fields as (
 
-  select 
-    _fivetran_id, 
-    creative_id, 
+  select
+    _fivetran_id,
+    creative_id,
     parse_json(template_app_link_spec_ios) as template_app_link_spec_ios,
     parse_json(template_app_link_spec_ipad) as template_app_link_spec_ipad,
     parse_json(template_app_link_spec_android) as template_app_link_spec_android,
@@ -17,10 +16,10 @@ with base as (
   from base
 
 {% for app in ['ios','ipad','android','iphone'] %}
-  
+
 ), flattened_{{ app }} as (
 
-  select 
+  select
     _fivetran_id,
     creative_id,
     '{{ app }}' as app_type,

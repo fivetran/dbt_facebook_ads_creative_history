@@ -8,3 +8,9 @@ require-dbt-version: [">=0.18.0", "<0.20.0"]
 models:
   facebook_ads_creative_history:
     materialized: table
+    bigquery:
+      enabled: "{{ target.type == 'bigquery' | as_bool() }}"
+    redshift:
+      enabled: "{{ target.type == 'redshift' | as_bool() }}"
+    snowflake:
+      enabled: "{{ target.type == 'snowflake' | as_bool() }}"

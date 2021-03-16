@@ -1,17 +1,15 @@
-{{ config(enabled=target.type=='redshift') }}
-
 with base as (
 
     select *
     from {{ ref('int__facebook_ads__carousel_media_prep') }}
-  
+
 ), fields as (
 
-    select 
+    select
         _fivetran_id,
         creative_id,
-        caption, 
-        description, 
+        caption,
+        description,
         message,
         link,
         index
