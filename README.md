@@ -45,7 +45,7 @@ By default this package will build the Facebook Ads staging models within a sche
 
 ...
 models:
-  facebook_creative_history:
+  facebook_ads_creative_history:
     +schema: my_new_schema_name # leave blank for just the target_schema
   facebook_ads_source:
     +schema: my_new_schema_name # leave blank for just the target_schema
