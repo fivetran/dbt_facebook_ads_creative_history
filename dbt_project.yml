@@ -15,3 +15,9 @@ models:
       enabled: "{{ target.type == 'redshift' | as_bool() }}"
     snowflake:
       enabled: "{{ target.type == 'snowflake' | as_bool() }}"
+    spark:
+      enabled: "{{ target.type == 'spark' | as_bool() }}"
+
+vars:
+  dbt_utils_dispatch_list: ['spark_utils', 'fivetran_utils']
+  fivetran_utils_dispatch_list: ['spark_utils']
