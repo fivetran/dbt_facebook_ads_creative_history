@@ -16,6 +16,3 @@ models:
       enabled: "{{ target.type == 'spark' | as_bool() }}"
     postgres:
       enabled: "{{ target.type == 'postgres' | as_bool() }}"
-vars:
-  dbt_utils_dispatch_list: ['spark_utils', 'fivetran_utils']
-  fivetran_utils_dispatch_list: ['spark_utils']
