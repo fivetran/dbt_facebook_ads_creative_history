@@ -18,7 +18,8 @@ with base as (
     template_app_link_spec_ios,
     template_app_link_spec_ipad,
     template_app_link_spec_android,
-    template_app_link_spec_iphone
+    template_app_link_spec_iphone,
+    source_relation
   from base
 
 {% for app in ['ios','ipad','android','iphone'] %}
@@ -29,7 +30,8 @@ with base as (
     _fivetran_id,
     creative_id,
     '{{ app }}'::varchar as app_type,
-    json_extract_array_element_text(required_fields.template_app_link_spec_{{ app }}, numbers.generated_number::int - 1, true) as element
+    json_extract_array_element_text(required_fields.template_app_link_spec_{{ app }}, numbers.generated_number::int - 1, true) as element,
+    source_relation
   from required_fields
   inner join numbers
       on json_array_length(required_fields.template_app_link_spec_{{ app }}) >= numbers.generated_number
@@ -45,7 +47,8 @@ with base as (
     json_extract_path_text(element,'app_store_id') as app_store_id,
     json_extract_path_text(element,'class') as class_name,
     json_extract_path_text(element,'package') as package_name,
-    json_extract_path_text(element,'template_page') as template_page
+    json_extract_path_text(element,'template_page') as template_page,
+    source_relation
   from flattened_{{ app }}
 
 {% endfor %}

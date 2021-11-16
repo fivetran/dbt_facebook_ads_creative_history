@@ -12,7 +12,8 @@ with base as (
 
     select
         _fivetran_id,
-        asset_feed_spec_link_urls
+        asset_feed_spec_link_urls,
+        source_relation
     from base
     where asset_feed_spec_link_urls is not null
 
@@ -21,7 +22,8 @@ with base as (
     select
         _fivetran_id,
         json_extract_array_element_text(required_fields.asset_feed_spec_link_urls, numbers.generated_number::int - 1, true) as element,
-        numbers.generated_number - 1 as index
+        numbers.generated_number - 1 as index,
+        source_relation
     from required_fields
     inner join numbers
         on json_array_length(required_fields.asset_feed_spec_link_urls) >= numbers.generated_number
@@ -32,7 +34,8 @@ with base as (
         _fivetran_id,
         index,
         json_extract_path_text(element,'display_url') as display_url,
-        json_extract_path_text(element,'website_url') as website_url
+        json_extract_path_text(element,'website_url') as website_url,
+        source_relation
     from flattened
 
 )

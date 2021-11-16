@@ -12,7 +12,8 @@ with base as (
         description,
         message,
         link,
-        index
+        index,
+        source_relation
     from base
 
 )

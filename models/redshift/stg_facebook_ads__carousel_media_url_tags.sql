@@ -15,7 +15,8 @@ with base as (
         base._fivetran_id,
         base.creative_id,
         base.index,
-        json_extract_array_element_text(base.url_tags, numbers.generated_number::int - 1, true) as element
+        json_extract_array_element_text(base.url_tags, numbers.generated_number::int - 1, true) as element,
+        source_relation
     from base
     inner join numbers
         on json_array_length(base.url_tags) >= numbers.generated_number
@@ -27,7 +28,8 @@ with base as (
         creative_id,
         index,
         json_extract_path_text(element,'key') as key,
-        json_extract_path_text(element,'value') as value
+        json_extract_path_text(element,'value') as value,
+        source_relation
     from unnested
 
 )
