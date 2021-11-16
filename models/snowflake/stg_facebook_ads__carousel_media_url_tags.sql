@@ -11,7 +11,8 @@ with base as (
         base.creative_id,
         base.index,
         url_tags.value:key::string as key,
-        url_tags.value:value::string as value
+        url_tags.value:value::string as value,
+        source_relation
 
     from base,
     lateral flatten( input => url_tags ) as url_tags

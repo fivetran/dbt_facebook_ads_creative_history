@@ -12,7 +12,8 @@ with base as (
         object_story_link_data_description,
         object_story_link_data_link,
         object_story_link_data_message,
-        parse_json(object_story_link_data_child_attachments) as child_attachments
+        parse_json(object_story_link_data_child_attachments) as child_attachments,
+        source_relation
     from base
     where object_story_link_data_child_attachments is not null
 
@@ -27,8 +28,8 @@ with base as (
         child_attachments as element,
         attachments.index as index,
         attachments.value:link  as link,
-        attachments.value:url_tags as url_tags
-
+        attachments.value:url_tags as url_tags,
+        source_relation
     from required_fields,
     lateral flatten( input => child_attachments ) as attachments
 
