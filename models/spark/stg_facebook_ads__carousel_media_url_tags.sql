@@ -9,7 +9,8 @@ with base as (
         _fivetran_id,
         creative_id,
         index,
-        explode(url_tags) as url_tag
+        explode(url_tags) as url_tag,
+        source_relation
     from base
 
 ), extract_values as (
@@ -19,7 +20,8 @@ with base as (
         creative_id,
         index,
         url_tag.value,
-        url_tag.key
+        url_tag.key,
+        source_relation
     from unnested
 
 )
