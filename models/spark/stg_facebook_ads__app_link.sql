@@ -9,6 +9,7 @@ with base as (
   select
     _fivetran_id,
     creative_id,
+    source_relation,
     {% for app in ['ios','ipad','android','iphone'] %}
     from_json(
       template_app_link_spec_{{ app }}, 
@@ -32,6 +33,7 @@ with base as (
   select
     _fivetran_id,
     creative_id,
+    source_relation,
     '{{ app }}' as app_type,
     element.index as index,
     element.app_name as app_name,

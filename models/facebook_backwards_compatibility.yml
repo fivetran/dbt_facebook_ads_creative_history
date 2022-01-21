@@ -6,6 +6,7 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - _fivetran_id
+            - source_relation
             - app_type
             - index
             - template_page
@@ -14,12 +15,14 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - _fivetran_id
+            - source_relation
             - index
   - name: stg_facebook_ads__carousel_media_url_tags
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - _fivetran_id
+            - source_relation
             - index
             - key
   - name: stg_facebook_ads__creative_history_asset_feed_spec_link_url
@@ -27,11 +30,13 @@ models:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - _fivetran_id
+            - source_relation
             - index
   - name: stg_facebook_ads__url_tag
     tests:
       - dbt_utils.unique_combination_of_columns:
           combination_of_columns:
             - _fivetran_id
+            - source_relation
             - key
             - type

@@ -7,7 +7,8 @@ with base as (
 
     select
         _fivetran_id,
-        explode(from_json(asset_feed_spec_link_urls, 'array<struct<display_url:STRING, website_url:STRING>>')) as asset_feed_spec_link_urls
+        explode(from_json(asset_feed_spec_link_urls, 'array<struct<display_url:STRING, website_url:STRING>>')) as asset_feed_spec_link_urls,
+        source_relation
     from base
     where asset_feed_spec_link_urls is not null
 
@@ -17,7 +18,8 @@ with base as (
         _fivetran_id,
         nullif(asset_feed_spec_link_urls.display_url, '') as display_url,
         nullif(asset_feed_spec_link_urls.website_url, '') as website_url,
-        row_number() over (partition by _fivetran_id order by _fivetran_id) as index
+        row_number() over (partition by _fivetran_id order by _fivetran_id) as index,
+        source_relation
     from required_fields
 
 )

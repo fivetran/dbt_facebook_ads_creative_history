@@ -32,6 +32,19 @@ packages:
 
 ## Configuration
 
+### Required Report(s)
+
+To use this package, you will need to configure your Facebook Ads connector to pull the `BASIC_AD` pre-built report. Follow the below steps in the Fivetran UI to do so:
+1. Navigate to the connector setup form (**Setup** -> **Edit connection details** for pre-existing connectors)
+2. Click **Add table** 
+3. Select **Pre-built Report**
+4. Set the table name to `basic_ad`
+5. Select `BASIC_AD` as the corresponding pre-built report
+6. Select a daily aggregation period
+7. Click **Ok** and **Save & test**!
+
+### Source Data Location
+
 By default, this package will look for your Facebook Ads data in the `facebook_ads` schema of your [target database](https://docs.getdbt.com/docs/running-a-dbt-project/using-the-command-line-interface/configure-your-profile). If this is not where your Facebook Ads data is, please add the following configuration to your `dbt_project.yml` file:
 
 ```yml
@@ -60,6 +73,19 @@ models:
   facebook_ads_source:
     +schema: my_new_schema_name # leave blank for just the target_schema
 ```
+
+### Unioning Multiple Facebook Ads Connectors
+If you have multiple Facebook Ads connectors in Fivetran and would like to use this package on all of them simultaneously, we have provided functionality to do so. The package will union all of the data together and pass the unioned table into the transformations. You will be able to see which source it came from in the `source_relation` column of each model. To use this functionality, you will need to set either (**note that you cannot use both**) the `facebook_ads_union_schemas` or `facebook_ads_union_databases` variables:
+
+```yml
+# dbt_project.yml
+...
+config-version: 2
+vars:
+  facebook_ads_union_schemas: ['facebook_ads_usa','facebook_ads_canada'] # use this if the data is in different schemas/datasets of the same database/project
+  facebook_ads_union_databases: ['facebook_ads_usa','facebook_ads_canada'] # use this if the data is in different databases/projects but uses the same schema name
+```
+
 ## Database Support
 
 This package has been tested on BigQuery, Snowflake, Redshift, Postgres, and Databricks.

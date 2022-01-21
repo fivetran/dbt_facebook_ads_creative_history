@@ -1,4 +1,3 @@
-
 with base as (
 
   select *
@@ -12,7 +11,8 @@ with base as (
     parse_json(template_app_link_spec_ios) as template_app_link_spec_ios,
     parse_json(template_app_link_spec_ipad) as template_app_link_spec_ipad,
     parse_json(template_app_link_spec_android) as template_app_link_spec_android,
-    parse_json(template_app_link_spec_iphone) as template_app_link_spec_iphone
+    parse_json(template_app_link_spec_iphone) as template_app_link_spec_iphone,
+    source_relation    
   from base
 
 {% for app in ['ios','ipad','android','iphone'] %}
@@ -28,7 +28,8 @@ with base as (
     element.value:app_store_id::string as app_store_id,
     element.value:class_name::string as class_name,
     element.value:package_name::string as package_name,
-    element.value:template_page::string as template_page
+    element.value:template_page::string as template_page,
+    source_relation
   from required_fields,
   lateral flatten( input => template_app_link_spec_{{ app }} ) as element
 

@@ -17,7 +17,8 @@ with base as (
         object_story_link_data_description,
         object_story_link_data_link,
         object_story_link_data_message,
-        object_story_link_data_child_attachments as child_attachments
+        object_story_link_data_child_attachments as child_attachments,
+        source_relation
     from base
     where object_story_link_data_child_attachments is not null
 
@@ -30,7 +31,8 @@ with base as (
         object_story_link_data_description as description,
         object_story_link_data_message as message,
         numbers.generated_number - 1 as index,
-        json_extract_array_element_text(required_fields.child_attachments, numbers.generated_number::int - 1, true) as element
+        json_extract_array_element_text(required_fields.child_attachments, numbers.generated_number::int - 1, true) as element,
+        source_relation
     from required_fields
     inner join numbers
         on json_array_length(required_fields.child_attachments) >= numbers.generated_number
@@ -45,7 +47,8 @@ with base as (
         message,
         index,
         json_extract_path_text(element,'link') as link,
-        json_extract_path_text(element,'url_tags') as url_tags
+        json_extract_path_text(element,'url_tags') as url_tags,
+        source_relation
     from flattened_child_attachments
 
 )

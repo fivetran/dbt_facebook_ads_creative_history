@@ -8,7 +8,8 @@ with base as (
     select
         _fivetran_id,
         creative_id,
-        explode(from_json(url_tags, 'array<struct<key:STRING, value:STRING, type:STRING>>')) as url_tags
+        explode(from_json(url_tags, 'array<struct<key:STRING, value:STRING, type:STRING>>')) as url_tags,
+        source_relation
     from base
     where url_tags is not null
 
@@ -20,7 +21,8 @@ with base as (
         creative_id,
         url_tags.key as key,
         url_tags.value as value,
-        url_tags.type as type
+        url_tags.type as type,
+        source_relation
     from required_fields
 
 

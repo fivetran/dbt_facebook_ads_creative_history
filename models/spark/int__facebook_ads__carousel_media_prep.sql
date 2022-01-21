@@ -17,7 +17,8 @@ with base as (
               object_story_link_data_child_attachments,
               'array<struct<link:STRING, url_tags:array<struct<key:STRING, type:STRING, value:STRING>>>>'
             ) 
-          ) as child_attachments
+          ) as child_attachments,
+        source_relation
     from base
     where object_story_link_data_child_attachments is not null
 
@@ -32,7 +33,8 @@ with base as (
         child_attachments as element,
         child_attachments.link  as link,
         child_attachments.url_tags as url_tags,
-        row_number() over (partition by _fivetran_id, creative_id order by child_attachments.link) as index
+        row_number() over (partition by _fivetran_id, creative_id order by child_attachments.link) as index,
+        source_relation
     from required_fields
 
 )

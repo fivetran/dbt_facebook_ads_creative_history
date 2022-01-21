@@ -7,7 +7,8 @@ with base as (
 
     select
         _fivetran_id,
-        parse_json(asset_feed_spec_link_urls) as asset_feed_spec_link_urls
+        parse_json(asset_feed_spec_link_urls) as asset_feed_spec_link_urls,
+        source_relation
     from base
     where asset_feed_spec_link_urls is not null
 
@@ -17,7 +18,8 @@ with base as (
         _fivetran_id,
         nullif(asset_feed_spec_link_urls.value:display_url::string, '') as display_url,
         nullif(asset_feed_spec_link_urls.value:website_url::string, '') as website_url,
-        asset_feed_spec_link_urls.index as index
+        asset_feed_spec_link_urls.index as index,
+        source_relation
     from required_fields,
     lateral flatten( input => asset_feed_spec_link_urls ) as asset_feed_spec_link_urls
 

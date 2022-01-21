@@ -11,7 +11,8 @@ with base as (
     template_app_link_spec_ios,
     template_app_link_spec_ipad,
     template_app_link_spec_android,
-    template_app_link_spec_iphone
+    template_app_link_spec_iphone,
+    source_relation
   from base
 
 {% for app in ['ios','ipad','android','iphone'] %}
@@ -27,7 +28,8 @@ with base as (
     json_extract_scalar(element, '$.app_store_id') as app_store_id,
     json_extract_scalar(element, '$.class') as class_name,
     json_extract_scalar(element, '$.package') as package_name,
-    json_extract_scalar(element, '$.template_page') as template_page
+    json_extract_scalar(element, '$.template_page') as template_page,
+    source_relation
   from required_fields
   left join unnest(json_extract_array(template_app_link_spec_{{ app }})) as element
 

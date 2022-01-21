@@ -10,7 +10,8 @@ with base as (
         creative_id,
         index,
         json_extract_scalar(element, '$.key') as key,
-        json_extract_scalar(element, '$.value') as value
+        json_extract_scalar(element, '$.value') as value,
+        source_relation
     from base
     inner join unnest(url_tags) as element
 
