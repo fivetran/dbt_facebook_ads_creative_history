@@ -27,6 +27,7 @@ with base as (
     from required_fields
     inner join numbers
         on json_array_length(required_fields.asset_feed_spec_link_urls) >= numbers.generated_number
+        and required_fields.source_relation = numbers.source_relation
 
 ), extracted_fields as (
 

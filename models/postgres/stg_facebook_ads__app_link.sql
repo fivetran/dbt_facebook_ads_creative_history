@@ -31,8 +31,9 @@ with base as (
     element->>'template_page' as template_page,
     source_relation
   from required_fields
-  left join lateral json_array_elements(template_app_link_spec_{{ app }}::json) as element on True
-  {# TODO: on True... True and source_relation? #}
+  left join lateral json_array_elements(template_app_link_spec_{{ app }}::json) as element 
+    on True
+    and required_fields.source_relation = element.source_relation
 
 {% endfor %}
 

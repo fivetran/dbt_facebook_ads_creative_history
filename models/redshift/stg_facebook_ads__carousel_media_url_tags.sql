@@ -20,6 +20,7 @@ with base as (
     from base
     inner join numbers
         on json_array_length(base.url_tags) >= numbers.generated_number
+        and base.source_relation = numbers.source_relation
 
 ), extracted_fields as (
 

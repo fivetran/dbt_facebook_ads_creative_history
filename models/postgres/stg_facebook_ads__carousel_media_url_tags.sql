@@ -13,7 +13,9 @@ with base as (
         element->>'value' as value,
         source_relation
     from base
-    inner join lateral json_array_elements(url_tags) as element on True
+    inner join lateral json_array_elements(url_tags) as element 
+        on True
+        and base.source_relation = element.source_relation
 
 )
 

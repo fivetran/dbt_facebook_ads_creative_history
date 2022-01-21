@@ -24,7 +24,11 @@ with base as (
 
 ), unnested as (
 
-    select _fivetran_id, creative_id, url_tag_element, source_relation
+    select 
+        _fivetran_id, 
+        creative_id, 
+        url_tag_element, 
+        source_relation
     from cleaned_json
     left join unnest(cleaned_url_tags) and source_relation as url_tag_element
     where cleaned_url_tags is not null
