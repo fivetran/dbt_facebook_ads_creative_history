@@ -2,4 +2,6 @@ packages:
   # TODO: Remove when dbt_facebook_ads_source is published in DBT Hub
   # - package: fivetran/facebook_ads_source
   #   version: [">=0.4.0", "<0.5.0"]
-  - local: ../dbt_facebook_ads_source
+  - git: https://github.com/fivetran/dbt_facebook_ads_source.git
+    revision: feature/union-abilitiy
+    warn-unpinned: false
