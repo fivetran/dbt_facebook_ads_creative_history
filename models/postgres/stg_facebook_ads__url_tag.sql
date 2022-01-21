@@ -19,7 +19,7 @@ with base as (
         _fivetran_id,
         creative_id,
         replace(trim(url_tags::text, '"'),'\\','')::json as cleaned_url_tags,
-        source_relation,
+        source_relation
     from required_fields
 
 ), unnested as (
