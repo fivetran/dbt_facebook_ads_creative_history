@@ -23,7 +23,6 @@ with base as (
     from required_fields
     left join lateral json_array_elements(asset_feed_spec_link_urls::json) as elements 
         on True
-        and required_fields.source_relation = elements.source_relation
 
 )
 

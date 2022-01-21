@@ -14,7 +14,6 @@ with base as (
         source_relation
     from base
     inner join unnest(url_tags) as element
-        on base.source_relation = element.source_relation
 
 )
 

@@ -28,7 +28,6 @@ with base as (
     from cleaned_json
     left join lateral json_array_elements(cleaned_url_tags) as url_tag_element 
         on True
-        and cleaned_json.source_relation = url_tag_element.source_relation
     where cleaned_url_tags is not null
 
 ), fields as (

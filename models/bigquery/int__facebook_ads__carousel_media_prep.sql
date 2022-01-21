@@ -31,7 +31,6 @@ with base as (
         source_relation
     from required_fields
     left join unnest(json_extract_array(object_story_link_data_child_attachments)) as element
-        on required_fields.source_relation = element.source_relation
 
 )
 

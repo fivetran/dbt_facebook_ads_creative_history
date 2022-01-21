@@ -32,7 +32,6 @@ with base as (
     source_relation
   from required_fields
   left join unnest(json_extract_array(template_app_link_spec_{{ app }})) as element
-    on required_fields.source_relation = element.source_relation
 
 {% endfor %}
 

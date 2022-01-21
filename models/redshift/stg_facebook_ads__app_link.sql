@@ -35,7 +35,6 @@ with base as (
   from required_fields
   inner join numbers
       on json_array_length(required_fields.template_app_link_spec_{{ app }}) >= numbers.generated_number
-      and required_fields.source_relation = numbers.source_relation
 
 ), extracted_{{ app }} as (
 

@@ -30,7 +30,7 @@ with base as (
         url_tag_element, 
         source_relation
     from cleaned_json
-    left join unnest(cleaned_url_tags) and source_relation as url_tag_element
+    left join unnest(cleaned_url_tags) as url_tag_element
     where cleaned_url_tags is not null
 
 ), fields as (

@@ -22,7 +22,6 @@ with base as (
         source_relation
     from required_fields
     left join unnest(json_extract_array(asset_feed_spec_link_urls)) as elements
-        on required_fields.source_relation = elements.source_relation
 )
 
 select *
