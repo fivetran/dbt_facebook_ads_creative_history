@@ -32,7 +32,6 @@ with base as (
     from required_fields
     left join lateral json_array_elements(object_story_link_data_child_attachments::json) as element 
         on True
-        and required_fields.source_relation = element.source_relation
 )
 
 select *

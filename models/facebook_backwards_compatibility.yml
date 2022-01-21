@@ -40,3 +40,10 @@ models:
             - source_relation
             - key
             - type
+  - name: int__facebook_ads__carousel_media_prep
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - _fivetran_id
+            - source_relation
+            - index
