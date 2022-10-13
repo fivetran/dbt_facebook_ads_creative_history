@@ -13,7 +13,7 @@ models:
       enabled: "{{ target.type == 'redshift' | as_bool() }}"
     snowflake:
       enabled: "{{ target.type == 'snowflake' | as_bool() }}"
-    spark:
-      enabled: "{{ target.type == 'spark' | as_bool() }}"
+    !!!!!!! REPLACE 'spark' WITH 'spark','databricks' OR EQUIV !!!!!!!:
+      enabled: "{{ target.type == '!!!!!!! REPLACE 'spark' WITH 'spark','databricks' OR EQUIV !!!!!!!' | as_bool() }}"
     postgres:
       enabled: "{{ target.type == 'postgres' | as_bool() }}"
