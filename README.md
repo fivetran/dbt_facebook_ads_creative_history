@@ -4,8 +4,6 @@
         <img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" /></a>
     <a alt="dbt-core">
         <img src="https://img.shields.io/badge/dbt_Core™_version->=1.3.0_,<2.0.0-orange.svg" /></a>
-    <a alt="Maintained?">
-        <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" /></a>
     <a alt="PRs">
         <img src="https://img.shields.io/badge/Contributions-welcome-blueviolet" /></a>
 </p>
@@ -15,6 +13,8 @@
 This package models Facebook Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/facebook-ads). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/facebook-ads#schemainformation). 
 
 The main focus of the package is to transform the core ad object tables into models with schemas that match the old Fivetran Facebook connector. 
+
+> ⚠️ WARNING! This package is not being actively updated, as it is not used by downstream models in the [Facebook Ads Package](https://github.com/fivetran/dbt_facebook_ads). The package is maintained to prevent breaking changes to any existing dbt projects that use this package, but we do not recommend adding it to your dbt project.
 
 ## Models
 
@@ -38,7 +38,7 @@ Include in your `packages.yml`
 ```yaml
 packages:
   - package: fivetran/facebook_ads_creative_history
-    version: [">=0.4.0", "<0.5.0"]
+    version: [">=0.5.0", "<0.6.0"]
 ```
 
 ## Configuration
