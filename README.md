@@ -1,6 +1,13 @@
 [![Apache License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) 
 # Facebook Ads Backwards Compatibility
 
+
+> ## ⚠️ Warning! ⚠️
+>
+> This package is no longer maintained by the Fivetran team and is not recommended for use. This package was required for an older version of the Facebook Ads dbt package. This compatibility is no longer needed and is not listed as a dependency in our other Facebook Ads packages. We recommend removing this package from your `packages.yml` and using the latest version of the dbt_facebook_ads package instead. 
+>
+> To view the current release of the dbt_facebook_ads package, please refer to the [release list](https://github.com/fivetran/dbt_facebook_ads/releases).
+
 This package models Facebook Ads data from [Fivetran's connector](https://fivetran.com/docs/applications/facebook-ads). It uses data in the format described by [this ERD](https://fivetran.com/docs/applications/facebook-ads#schemainformation). 
 
 The main focus of the package is to transform the core ad object tables into models with schemas that match the old Fivetran Facebook connector. 
