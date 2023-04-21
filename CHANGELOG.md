@@ -1,3 +1,9 @@
+# dbt_facebook_ads_creative_history v0.UPDATE.UPDATE
+
+ ## Under the Hood:
+
+- Incorporated the new `fivetran_utils.drop_schemas_automation` macro into the end of each Buildkite integration test job.
+- Updated the pull request [templates](/.github).
 # dbt_facebook_ads_creative_history v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
