@@ -1,3 +1,9 @@
+# dbt_facebook_ads_creative_history version.version
+
+## Documentation
+- Added Quickstart model counts to README. ([#22](https://github.com/fivetran/dbt_facebook_ads_creative_history/pull/22))
+- Corrected references to connectors and connections in the README. ([#22](https://github.com/fivetran/dbt_facebook_ads_creative_history/pull/22))
+
 # dbt_facebook_ads_creative_history v0.4.0
 🎉 dbt v1.0.0 Compatibility 🎉
 ## 🚨 Breaking Changes 🚨
