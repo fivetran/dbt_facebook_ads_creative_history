@@ -8,12 +8,12 @@ models:
     +schema: facebook_ads_creative_history
     +materialized: table
     bigquery:
-      enabled: "{{ target.type == 'bigquery' | as_bool() }}"
+      +enabled: "{{ target.type == 'bigquery' | as_bool() }}"
     redshift:
-      enabled: "{{ target.type == 'redshift' | as_bool() }}"
+      +enabled: "{{ target.type == 'redshift' | as_bool() }}"
     snowflake:
-      enabled: "{{ target.type == 'snowflake' | as_bool() }}"
+      +enabled: "{{ target.type == 'snowflake' | as_bool() }}"
     spark:
-      enabled: "{{ target.type == 'spark' | as_bool() }}"
+      +enabled: "{{ target.type == 'spark' | as_bool() }}"
     postgres:
-      enabled: "{{ target.type == 'postgres' | as_bool() }}"
+      +enabled: "{{ target.type == 'postgres' | as_bool() }}"
